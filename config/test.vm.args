@@ -1,0 +1,4 @@
+## Name of the node
+-name cinn-test@127.0.0.1
+## Cookie for distributed erlang
+-setcookie 

@@ -1,0 +1,5 @@
+package cinn.sample.func;
+import "cinn.sample.type.proto";
+// messageCode = 101
+message Call {
+}

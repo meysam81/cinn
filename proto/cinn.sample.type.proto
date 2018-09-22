@@ -1,0 +1,4 @@
+package cinn.sample.type;
+// messageCode = 001
+message  Type {
+}
