@@ -45,7 +45,9 @@ get_val(Key) ->
 
 to_binary(Element) when is_list(Element) ->
     list_to_binary(Element);
-to_binary(Element) when is_atom(Element); is_binary(Element) ->
+to_binary(Element) when is_atom(Element) ->
+    atom_to_binary(Element, utf8);
+to_binary(Element) when is_binary(Element) ->
     Element;
 to_binary(Element) when is_integer(Element) ->
     integer_to_binary(Element);
