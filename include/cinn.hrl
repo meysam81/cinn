@@ -3,6 +3,7 @@
 -ifndef(HEADER_CINN).
 -define(HEADER_CINN, true).
 
+-type ip_address() :: list().
 -type hostname() :: list().
 -type key() :: list().
 -type value() :: term().

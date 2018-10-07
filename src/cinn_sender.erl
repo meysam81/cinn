@@ -5,20 +5,20 @@
 
 %% API
 -export([
-         send/3
+         send/5
         ]).
 
 %%====================================================================
 %% API
 %%====================================================================
--spec send(Hostname, Key, Value) -> {ok, Response} when
+-spec send(ZabbixIp, ZabbixPort, Hostname, Key, Value) -> {ok, Response} when
+      ZabbixIp :: ip_address(),
+      ZabbixPort :: port(),
       Hostname :: hostname(),
       Key :: key(),
       Value :: value(),
       Response :: {ok, binary()} | {error, term()}.
-send(Hostname, Key, Value) ->
-    {ok, ZabbixIp} = get_val(zabbix_ip),
-    {ok, ZabbixPort} = get_val(zabbix_port),
+send(ZabbixIp, ZabbixPort, Hostname, Key, Value) ->
     {ok, Transport} = get_val(transport),
 
     {ok, Socket} = Transport:connect(ZabbixIp, ZabbixPort, [binary,
