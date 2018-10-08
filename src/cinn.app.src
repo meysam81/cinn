@@ -5,7 +5,9 @@
   {mod, { cinn_app, []}},
   {applications,
    [kernel,
-    stdlib
+    stdlib,
+    jiffy,
+    ibrowse
    ]},
   {env,[]},
   {modules, []},
