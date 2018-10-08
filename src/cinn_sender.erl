@@ -77,7 +77,16 @@ prepare_data(JsonMsg) ->
 receive_response(Transport, Socket) ->
     case Transport:recv(Socket, 0, 5000) of
         {ok, <<_:5/binary, _:8/binary, Body/binary>>} ->
-            {ok, jiffy:decode(Body)};
+            Response = jiffy:decode(Body),
+            Processed = element(2, lists:nth(2, element(1, Response))),
+            ProcessedList = re:split(binary:bin_to_list(Processed), "; "),
+            Failed = element(2, re:split(lists:nth(2, ProcessedList), ": ")),
+            case Failed of
+                <<"0">> ->
+                    {ok, done};
+                _ ->
+                    {ok, failed}
+            end;
         {ok, ?ZABBIX_HEADER} ->
             {ok, <<"ACCEPTED!">>};
         {error, Reason} ->
