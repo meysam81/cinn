@@ -80,10 +80,10 @@ receive_response(Transport, Socket) ->
             Response = jiffy:decode(Body),
             Processed = element(2, lists:nth(2, element(1, Response))),
             ProcessedList = re:split(binary:bin_to_list(Processed), "; "),
-            Failed = element(2, re:split(lists:nth(2, ProcessedList), ": ")),
+            Failed = lists:nth(2, re:split(lists:nth(2, ProcessedList), ": ")),
             case Failed of
                 <<"0">> ->
-                    {ok, done};
+                    {ok, success};
                 _ ->
                     {ok, failed}
             end;
